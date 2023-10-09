@@ -19,7 +19,7 @@ do
     //prompt user
     Console.WriteLine("1) Display Ticket Info");
     Console.WriteLine("2) Create Ticket");
-    Console.WriteLine("Enter any other key to exit.");
+    Console.WriteLine("Press Enter to exit.");
     choice = Console.ReadLine();
 
     logger.Info("User choice: {Choice}", choice);
@@ -31,30 +31,40 @@ do
     // write data
     else if (choice == "2")
     {
+
         Ticket ticket = new Ticket();
         
         // Get Summary
-        Console.Write($"Enter Ticket Summary for #{ticket.TicketID}: ");
+        Console.Write("Enter a Quick Summary: ");
         ticket.Summary = Console.ReadLine();
         // Get Status
-        Console.WriteLine("Enter Ticket Status for TicketID #{0}: ");
-        string status = Console.ReadLine();
+        Console.Write("Enter Status: ");
+        ticket.Status = Console.ReadLine();
         // Get Priority
-        Console.WriteLine("Enter Priority for TicketID #{0}: ");
-        string priority = Console.ReadLine();
+        Console.Write("Enter Priority: ");
+        ticket.Priority = Console.ReadLine();
         // Submitter
-        Console.WriteLine("Enter Submitter for TicketID #{0}: ");
-        string submitter = Console.ReadLine();
+        Console.Write("Who is submitting: ");
+        ticket.Submitter = Console.ReadLine();
         //Assigned
-        Console.WriteLine("Enter Assigned for TicketID #{0}: ");
-        string assigned = Console.ReadLine();
-        //  Watching
-        Console.WriteLine("Enter Watching for TicketID #{0}: ");
-        string watching = Console.ReadLine();
+        Console.Write("Who is assigned: ");
+        ticket.Assigned = Console.ReadLine();
 
-        // StreamWriter sw = new StreamWriter(file, append: true);
-        // sw.WriteLine("{0},{1},{2},{3},{4},{5},{6}", lines, summary, status, priority, submitter, assigned, watching);
-        // sw.Close();
+        // Watching
+        string input;
+        do
+        {
+            Console.Write("Enter Watching (done to quit): ");
+            input = Console.ReadLine();
+            if (input != "done" && input.Length > 0)
+            {
+                ticket.Watching.Add(input);
+            }
+        } while (input != "done");
+
+        // Add ticket to the file
+        ticketFile.AddTicket(ticket);
+        
     }
 } while (choice == "1" || choice == "2");
 

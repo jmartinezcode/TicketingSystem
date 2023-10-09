@@ -53,7 +53,8 @@ public class TicketFile
         try
         {
             // Generate next ticket ID
-            ticket.TicketID = Tickets.Count + 1;
+            int nextTicketID = Tickets.Max(t => t.TicketID) + 1;
+            ticket.TicketID = nextTicketID;
             StreamWriter sw = new StreamWriter(filePath, true);
             sw.WriteLine($"{ticket.TicketID},{ticket.Summary},{ticket.Status},{ticket.Priority},{ticket.Submitter},{ticket.Assigned},{string.Join("|", ticket.Watching)}");
             sw.Close();
