@@ -1,8 +1,13 @@
-﻿using System.ComponentModel;
-using System.Reflection.Metadata.Ecma335;
-using Microsoft.Win32.SafeHandles;
+﻿using NLog;
+
+string path = Directory.GetCurrentDirectory() + "\\nlog.config";
+
+// create instance of Logger
+var logger = LogManager.LoadConfiguration(path).GetCurrentClassLogger();
 
 string file = "Tickets.csv";
+logger.Info("Program started");
+
 string choice;
 // TicketID, Summary, Status, Priority, Submitter, Assigned, Watching
 // 1,This is a bug ticket, Open, High, Drew Kjell, Jane Doe, Drew Kjell|John Smith|Bill Jones
@@ -13,6 +18,8 @@ do
     Console.WriteLine("2) Create Ticket");
     Console.WriteLine("Enter any other key to exit.");
     choice = Console.ReadLine();
+
+    logger.Info("User choice: {Choice}", choice);
     // read tickets
     if (choice == "1")
     {
@@ -70,3 +77,5 @@ do
         sw.Close();
     }
 } while (choice == "1" || choice == "2");
+
+logger.Info("Program ended");
