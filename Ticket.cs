@@ -7,6 +7,11 @@ public class Ticket
     public string Submitter { get; set; }
     public string Assigned { get; set; }
     public List<string> Watching { get; set; }
+
+    public Ticket()
+    {
+        Watching = new List<string>();
+    }
     public override string ToString()
     {
         return $"TicketID: {TicketID}\nSummary: {Summary}\nStatus: {Status}\nPriority: {Priority}\nSubmitter: {Submitter}\nAssigned: {Assigned}\nWatching: {string.Join(", ", Watching)}\n";
