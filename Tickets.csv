@@ -1,5 +1,6 @@
-TicketID, Summary, Status, Priority, Submitter, Assigned, Watching
-1,This is a bug ticket, Open, High, Drew Kjell, Jane Doe, Drew Kjell|John Smith|Bill Jones
-2,Test ticket,Open,Low,Jacob M.,Jeff G.,Jacob M.|Jeff G.
-3,Another test,Open,Low,JMC,David,David|Jacob
-4,One final test,Closed,High,Jacob,Jacob,Rick|Dan|Abraham
+TicketID, Summary, Status, Priority, Submitter, Assigned, Watching, Severity
+1,This is a bug ticket, Open, High, Drew Kjell, Jane Doe, Drew Kjell|John Smith|Bill Jones, Super
+2,Test ticket,Open,Low,Jacob M.,Jeff G.,Jacob M.|Jeff G., Low
+3,Another test,Open,Low,JMC,David,David|Jacob, Low
+4,One final test,Closed,High,Jacob,Jacob,Rick|Dan|Abraham, Lowest
+11,Last Test,Closed,Low,Jacob,Greg,Logan|Tom,Highest
