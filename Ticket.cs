@@ -54,7 +54,7 @@ public class TaskTicket : Ticket
     public DateTime DueDate { get; set; }
     public override string Display()
     {
-        return base.Display() + $"Project Name: {ProjectName}\nDue Date: {DueDate:MM/DD/YY}";
+        return base.Display() + $"Project Name: {ProjectName}\nDue Date: {DueDate:MM/dd/yy}\n";
     }
     public override string GetTicketType()
     {
