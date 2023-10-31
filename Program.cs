@@ -19,6 +19,7 @@ do
     Console.WriteLine("2) Create Bug Ticket");
     Console.WriteLine("3) Create Enhancement Ticket");
     Console.WriteLine("4) Create Task Ticket");
+    Console.WriteLine("5) Search for a Ticket");
     Console.WriteLine("Press Enter to exit.");
     choice = Console.ReadLine();
 
@@ -131,6 +132,40 @@ do
         // Add ticket to the file
         ticketFile.AddTicket(ticket);
         
+    }
+    // Search tickets
+    else if (choice == "5")
+    {
+        Console.Write("Enter search term (Status, Priority, Submitter): ");
+        string userInput = Console.ReadLine();
+        string search = userInput.ToLower(); // convert for searching
+        Console.ForegroundColor = ConsoleColor.Green;
+        var tickets = ticketFile.Tickets.Where(t =>
+            t.Status.ToLower().Contains(search) ||
+            t.Priority.ToLower().Contains(search) ||
+            t.Submitter.ToLower().Contains(search)
+        ).ToList();
+        Console.WriteLine($"\nThere are {tickets.Count} results for '{userInput}'\n");
+        foreach (var t in tickets)
+        {
+            Console.WriteLine(t.Display());
+        }
+        Console.ResetColor();
+        
+    }
+    else 
+    {
+        if (string.IsNullOrEmpty(choice))
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\nGoodbye!\n");
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("\nPlease enter a valid option\n");
+        }        
+        Console.ResetColor();
     }
 } while (!string.IsNullOrEmpty(choice));
 
